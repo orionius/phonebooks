@@ -23,16 +23,47 @@ $data =array(
     'firstname'=>   $firstname,
     'surname'=>     $surname,
     'patronymic'=>  $patronymic,
-    'phone'=>       $phone);
+    'phone'=>       $phone
+            );
 
 
 
 DB::table('notes')->insert($data);
 
 
-return view('phone_list', $data);
+$notes = DB::table('notes')->get();
+return view('phone_list', compact('notes'));
 
 
+    }
+
+    public function submit (request $req)
+    {
+        $id=             $req->input('id');        
+        $edit=           $req->input('edit');
+        $del=            $req->input('del');
+     
+
+        if (isset($edit))
+        {
+     
+
+
+    return view('edit_contact', [
+        'firstname' =>  $req->input('firstname'), 
+        'surname' =>    $req->input('surname'),
+        'patronymic' => $req->input('patronymic'),
+        'phone' =>      $req->input('phone')
+              
+        ]);
+
+        }
+        if (isset($del))
+        {
+        DB::delete('delete from notes where id = ?',[$id]);
+        $notes =         DB::table('notes')->get();   
+        return view('phone_list', compact('notes')); 
+        }
 
 
     }
@@ -40,35 +71,27 @@ return view('phone_list', $data);
 
     public function phone_lst ()
     {
-    
-    /*
-    $data = [];
-    $data ['firstname'] = 'Douglas';
-    $data ['phone'] = '88995522';
-    return view('phone_list', $data);
-    
-    */
-    
-    /*
-    return view('home', [
-        'events' => Event::get(['id', 'name', 'phone']);
-    
-    
-    */
-    
-    $notes = notes::query()->all();
-
-    /*$notes = notes::all();*/
+     $notes = DB::table('notes')->get();
     return view('phone_list', compact('notes'));
-    
-  
-    
-    
     }
 
+    public function destroy($id) {
+     DB::delete('delete from notes where id = ?',[$id]);
+     $notes = DB::table('notes')->get();
+    return view('phone_list', compact('notes'));
+     }
 
 
-
+    public function edit($req) {
+        $id=            $req->input('id');
+        $firstname=     $req->input('firstname');
+        $surname=       $req->input('surname');
+        $patronymic=    $req->input('patronymic');
+        $phone=         $req->input('phone');
+        DB::update('update notes set firstname = ? , surname = ?,patronymic = ?,phone = ? where user_id = ?', [$firstname , $surname , $patronymic,$phone]);
+     $notes = DB::table('notes')->get();
+    return view('phone_list', compact('notes'));
+     }
 
 
 

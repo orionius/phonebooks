@@ -6,10 +6,8 @@
 
 <div class="container">
     <div class="row">
-      <div class="col">
-    
-        
-      </div>
+      <div class="col">  </div>
+
       <div class="col-6">
         <form id="logout-form" action="{{ route('phone-insert') }}" method="POST">
             @csrf
@@ -31,19 +29,19 @@
 
             <div class="form-group">
                 <label for="phone">Номер телефона</label>
-                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone number" pattern="8-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" value="{{ old('phone') }}">
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Введите телефон" pattern="8-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" value="{{ old('phone') }}">
                 <small>формат: 8-911-000-00-00</small>
             </div>
             
 
-            <button type="submit" class="btn btn-primary">Войти</button>
+            <button type="submit" class="btn btn-primary">Добавить</button>
           </form>
       </div>
-      <div class="col">
+   <div class="col-2"></div>
       
         
       </div>
-    </div>
+  
 
   </div>
 
