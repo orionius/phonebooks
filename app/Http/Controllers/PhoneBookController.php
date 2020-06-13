@@ -75,11 +75,7 @@ return view('phone_list', compact('notes'));
     return view('phone_list', compact('notes'));
     }
 
-    public function destroy($id) {
-     DB::delete('delete from notes where id = ?',[$id]);
-     $notes = DB::table('notes')->get();
-    return view('phone_list', compact('notes'));
-     }
+
 
 
     public function edit($req) {

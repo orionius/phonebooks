@@ -1,6 +1,13 @@
 
 @extends('layouts.app')
 @section('content')
+<style>
+
+
+</style>
+
+<body>
+        
 
 <div class="row">
     <div class="col-2"></div>    
@@ -12,7 +19,7 @@
              <th>Id</th><th>Имя</th><th>Фамилия</th><th>Отчество</th><th>Телефон</th><th>Действие</th>
     </tr>
 
-            @foreach ($notes as $note)         
+        @foreach ($notes as $note)         
 
     
     <tr>
@@ -22,11 +29,14 @@
           <td><p>{{ $note->surname }}</p></td>
           <td><p>{{ $note->patronymic }}</p></td>          
           <td><p>{{ $note->phone }}</p></td>
-
+<img src="src="{{ asset('img/wallpaper.jpg') }} alt="">
+  
           
           <td>   
     <form id="logout-form" action="{{ route('phone-submit') }}" method="POST">
     @csrf   
+
+  
             <input type="hidden" name="id"          value="{{ $note->id }}"> 
             <input type="hidden" name="firstname"   value="{{ $note->firstname }}"> 
             <input type="hidden" name="surname"     value="{{ $note->surname }}"> 
@@ -40,7 +50,7 @@
 
     </tr>
 
-            @endforeach 
+        @endforeach 
 
         </table>
 
@@ -52,6 +62,6 @@
     <div class="col-2"></div>
   </div>
 
-
+</body>
 
 @endsection
