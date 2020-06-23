@@ -2,8 +2,8 @@
 
 @section('content')
 
-<body>
-    
+    <body>
 
-</body>
+
+    </body>
 @endsection

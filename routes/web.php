@@ -22,7 +22,7 @@ Route::get('/form', function () {
 });
 
 Route::get('/edit/{note}', function ($note) {
-     return view('edit_contact', ['note' => $note]);
+    return view('edit_contact', ['note' => $note]);
 });
 
 
